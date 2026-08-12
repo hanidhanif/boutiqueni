@@ -1,28 +1,9 @@
-const navbar = document.getElementById('navbar');
-const backTop = document.getElementById('backTop');
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-  backTop.classList.toggle('show', window.scrollY > 500);
-});
-
-backTop.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
-
-menuToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-
-document.querySelectorAll('#navMenu a').forEach(link => {
-  link.addEventListener('click', () => navMenu.classList.remove('open'));
-});
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const navbar=document.getElementById('navbar');
+const menu=document.getElementById('menuToggle');
+const back=document.getElementById('backTop');
+menu.addEventListener('click',()=>navbar.classList.toggle('open'));
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>navbar.classList.remove('open')));
+window.addEventListener('scroll',()=>back.classList.toggle('show',scrollY>450));
+back.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
