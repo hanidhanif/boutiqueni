@@ -1,4 +1,3 @@
-BoutiqueNi — Landing Page Busana Muslimah
+BoutiqueNi - versi dengan FOTO KOLEKSI MUSLIMAH
 
-Isi: index.html, style.css, script.js, folder assets berisi foto lokal model berhijab.
-Cara menjalankan: extract ZIP lalu buka index.html di browser.
+Buka index.html setelah extract ZIP. Semua foto koleksi tersimpan lokal di folder assets, sehingga tidak perlu koneksi internet untuk gambar.
