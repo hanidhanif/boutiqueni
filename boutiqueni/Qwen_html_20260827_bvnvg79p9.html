@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silverhawk WebLearn | Portal Belajar Desain Web</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Silverhawk<span>.WebLearn</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#gallery">Galeri Video</a></li>
+                <li><a href="#contact">Diskusi</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <h1>Kuasai Dunia <br><span class="highlight">Desain Web</span></h1>
+            <p>Portal belajar interaktif HTML, CSS, JS, dan JSON. Bergabunglah dengan komunitas Silverhawk untuk membangun masa depan digital.</p>
+            <a href="#gallery" class="btn-primary">Mulai Belajar</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tentang Kami</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Mengapa Silverhawk?</h3>
+                    <p>Silverhawk WebLearn didedikasikan untuk para pengembang web pemula hingga mahir. Kami menyediakan materi yang terstruktur mulai dari struktur dasar HTML hingga manipulasi data kompleks menggunakan JSON.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Kurikulum Modern & Responsif</li>
+                        <li><i class="fas fa-check-circle"></i> Studi Kasus Real World</li>
+                        <li><i class="fas fa-check-circle"></i> Komunitas Diskusi Aktif</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <!-- Gambar coding free copyright dari Unsplash -->
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Coding Setup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery Carousel Section -->
+    <section id="gallery" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Galeri Tutorial</h2>
+                <p>Tonton seri pembelajaran terbaru kami</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                
+                <div class="carousel-track-container">
+                    <ul class="carousel-track" id="videoTrack">
+                        <!-- Video items akan di-inject oleh JavaScript -->
+                    </ul>
+                </div>
+
+                <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <div class="carousel-nav">
+                <!-- Indikator slide -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Discussion Section -->
+    <section id="contact" class="section-padding">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Bergabung dalam Diskusi</h2>
+                <p>Punya pertanyaan tentang kode? Atau ingin berbagi proyekmu? Kirim pesan kepada tim Silverhawk atau bergabung di forum Discord kami.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Email Anda" required>
+                <textarea rows="5" placeholder="Topik Diskusi / Pertanyaan" required></textarea>
+                <button type="submit" class="btn-primary">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2023 Silverhawk WebLearn. All Rights Reserved.</p>
+            <p>Designed for GitHub Pages Deployment.</p>
+        </div>
+    </footer>
+
+    <!-- Script Link -->
+    <script src="script.js"></script>
+</body>
+</html>
