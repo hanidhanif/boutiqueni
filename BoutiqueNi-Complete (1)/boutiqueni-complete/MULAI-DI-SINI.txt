@@ -1,0 +1,36 @@
+BoutiqueNi — Paket Lengkap (Frontend + Backend Google Sheets)
+
+========================================
+ISI PAKET
+========================================
+frontend/          → Upload ke GitHub Pages
+  index.html
+  style.css
+  script.js
+  config.js        ← isi API_URL setelah deploy Apps Script
+  assets/          → semua foto produk & hero
+  README.md
+
+apps-script/
+  Code.gs          ← paste ke script.google.com
+  SETUP.md         ← panduan detail
+
+========================================
+LANGKAH CEPAT
+========================================
+1. Buka script.google.com → New project
+2. Paste seluruh isi apps-script/Code.gs
+3. Jalankan fungsi setupBoutiqueNi (sekali)
+   → otomatis buat Spreadsheet + header + password "Bismillaah"
+4. Deploy → New deployment → Web app
+   - Execute as: Me
+   - Who has access: Anyone
+5. Copy Web App URL
+6. Edit frontend/config.js → ganti API_URL
+7. Upload folder frontend/ ke repo GitHub Pages
+8. Buka website → klik logo "BoutiqueNi" 4× → login dengan password Bismillaah
+
+Password & secret HANYA ada di Script Properties Apps Script.
+Tidak ada password di file GitHub.
+
+Lihat apps-script/SETUP.md untuk detail lengkap.
