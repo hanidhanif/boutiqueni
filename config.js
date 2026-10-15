@@ -11,7 +11,7 @@
  */
 window.BOUTIQUENI_CONFIG = {
   // WAJIB diganti setelah deploy Apps Script
-  API_URL: 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbxlMWWZauAr7H48px0_VHZLJZcpApjdc8eho8oe4WConGjBv2DizpDToaTZd85Y7sk0/exec',
 
   // Timeout request (ms)
   REQUEST_TIMEOUT: 20000
