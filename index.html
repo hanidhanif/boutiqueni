@@ -21,6 +21,7 @@
       <a href="#about">Tentang Kami</a>
       <a href="#contact">Kontak</a>
     </nav>
+    <button class="cart-nav-btn" id="openCart" type="button">♡ Keranjang <span id="cartCount">0</span></button>
     <a class="nav-btn" href="#collection">Belanja Sekarang</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
   </header>
@@ -206,6 +207,45 @@
     </div>
   </div>
 
+
+  <div class="cart-overlay" id="cartOverlay" hidden>
+    <section class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-heading"><div><p class="eyebrow">BOUTIQUENI CHECKOUT</p><h2 id="cartTitle">Keranjang <em>Belanja</em></h2></div><button type="button" id="closeCart" class="cart-close" aria-label="Tutup">×</button></div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-total-row"><span>Total produk</span><strong id="cartTotal">Rp0</strong></div>
+      <p class="checkout-note">Ongkir dan total akhir akan dikonfirmasi oleh admin melalui WhatsApp.</p>
+      <form id="checkoutForm" class="checkout-form">
+        <h3>Data Pengiriman</h3>
+        <label>Nama lengkap<input name="customerName" required autocomplete="name" placeholder="Nama penerima"></label>
+        <label>Nomor WhatsApp<input name="customerPhone" required type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx"></label>
+        <label>Alamat lengkap<textarea name="customerAddress" required rows="2" autocomplete="street-address" placeholder="Jalan, kecamatan, kota, kode pos"></textarea></label>
+        <h3>Metode Pembayaran</h3>
+        <div class="payment-options">
+          <label><input type="radio" name="paymentMethod" value="transfer_bca" required> Transfer Bank BCA</label>
+          <label><input type="radio" name="paymentMethod" value="transfer_mandiri"> Transfer Bank Mandiri</label>
+          <label><input type="radio" name="paymentMethod" value="transfer_bni"> Transfer Bank BNI</label>
+          <label><input type="radio" name="paymentMethod" value="qris"> QRIS</label>
+          <label><input type="radio" name="paymentMethod" value="gopay"> GoPay</label>
+          <label><input type="radio" name="paymentMethod" value="ovo"> OVO</label>
+          <label><input type="radio" name="paymentMethod" value="dana"> DANA</label>
+          <label><input type="radio" name="paymentMethod" value="shopeepay"> ShopeePay</label>
+          <label><input type="radio" name="paymentMethod" value="cod"> COD (Bayar di Tempat)</label>
+        </div>
+        <label>Catatan pesanan (opsional)<textarea name="customerNote" rows="2" placeholder="Warna/ukuran atau catatan lainnya"></textarea></label>
+        <button class="btn primary checkout-submit" type="submit">Lanjutkan Pesanan via WhatsApp ↗</button>
+        <p class="payment-disclaimer">Pilihan pembayaran dicatat dalam pesanan. Pembayaran online belum diproses otomatis; admin akan mengirim instruksi resmi setelah pesanan dikonfirmasi.</p>
+      </form>
+    </section>
+  </div>
+
+
+  <!-- Floating quick contact BoutiqueNi -->
+  <div class="quick-contact" aria-label="Kontak BoutiqueNi">
+    <a class="quick-contact-call" href="tel:+6285215834532" aria-label="Telepon BoutiqueNi" title="Telepon BoutiqueNi">☎</a>
+    <a class="quick-contact-wa" href="https://wa.me/6285215834532?text=Halo%20BoutiqueNi%2C%20saya%20ingin%20bertanya%20tentang%20produknya." target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp BoutiqueNi">
+      <span class="wa-icon" aria-hidden="true">◉</span><span class="wa-label">Chat WhatsApp</span>
+    </a>
+  </div>
   <script src="config.js"></script>
   <script src="script.js"></script>
 </body>

@@ -19,6 +19,8 @@
   const logo = document.getElementById('logoClick');
   const productsGrid = document.getElementById('productsGrid');
   const productsLoading = document.getElementById('productsLoading');
+  let boutiqueProducts = [];
+  let cart = JSON.parse(localStorage.getItem('boutiqueni_cart') || '[]');
 
   const loginOverlay = document.getElementById('loginOverlay');
   const loginForm = document.getElementById('loginForm');
@@ -108,6 +110,7 @@
   function renderProducts(products) {
     if (!productsGrid) return;
     productsGrid.innerHTML = '';
+    boutiqueProducts = Array.isArray(products) ? products : [];
 
     if (!products || !products.length) {
       productsGrid.innerHTML = '<div class="products-empty">Belum ada produk. Silakan tambah lewat panel admin.</div>';
@@ -126,7 +129,8 @@
         '</div>' +
         '<h3>' + escapeHtml(p.name) + '</h3>' +
         '<p>' + escapeHtml(p.subtitle || '') + '</p>' +
-        '<strong>' + formatPrice(p.price) + '</strong>';
+        '<strong>' + formatPrice(p.price) + '</strong>' +
+          '<button class="add-cart-btn" type="button" data-product-index="' + products.indexOf(p) + '">＋ Tambah ke Keranjang</button>';
       productsGrid.appendChild(article);
     });
 
@@ -523,6 +527,61 @@
       alert(err.message || 'Gagal menghapus');
     }
   }
+
+
+  // ---------- Keranjang & checkout ----------
+  const CART_KEY = 'boutiqueni_cart';
+  const CART_WA_NUMBER = '6285215834532'; // WhatsApp resmi BoutiqueNi
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartCountEl = document.getElementById('cartCount');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const checkoutForm = document.getElementById('checkoutForm');
+  function rupiah(n) { return 'Rp' + (Number(n)||0).toLocaleString('id-ID'); }
+  function saveCart() { localStorage.setItem(CART_KEY, JSON.stringify(cart)); renderCart(); }
+  function openCart() { if (cartOverlay) cartOverlay.hidden = false; renderCart(); }
+  function closeCart() { if (cartOverlay) cartOverlay.hidden = true; }
+  function renderCart() {
+    if (cartCountEl) cartCountEl.textContent = cart.reduce((s,i)=>s+i.qty,0);
+    if (cartItemsEl) {
+      cartItemsEl.innerHTML = cart.length ? cart.map((it,i)=>
+        '<div class="cart-item"><div><b>'+escapeHtml(it.name)+'</b><small>'+rupiah(it.price)+'</small><div class="qty-control"><button type="button" data-cart-action="minus" data-index="'+i+'">−</button><span>'+it.qty+'</span><button type="button" data-cart-action="plus" data-index="'+i+'">＋</button></div></div><b>'+rupiah(it.price*it.qty)+'</b><button class="remove-cart" type="button" data-cart-action="remove" data-index="'+i+'">×</button></div>'
+      ).join('') : '<div class="cart-empty"><span>♡</span><h3>Keranjang masih kosong</h3><p>Yuk, pilih koleksi favoritmu.</p></div>';
+    }
+    if (cartTotalEl) cartTotalEl.textContent = rupiah(cart.reduce((s,i)=>s+i.price*i.qty,0));
+  }
+  document.addEventListener('click', function(e) {
+    const add=e.target.closest('.add-cart-btn');
+    if(add) {
+      const p=boutiqueProducts[Number(add.dataset.productIndex)]; if(!p)return;
+      const id=String(p.id||p.name), found=cart.find(x=>x.id===id);
+      if(found) found.qty++; else cart.push({id,name:String(p.name||'Produk'),price:Number(p.price)||0,qty:1});
+      saveCart(); add.textContent='✓ Ditambahkan';
+      setTimeout(()=>{if(add.isConnected)add.textContent='＋ Tambah ke Keranjang';},1000); return;
+    }
+    const act=e.target.closest('[data-cart-action]');
+    if(act) {
+      const i=Number(act.dataset.index); if(!cart[i])return;
+      if(act.dataset.cartAction==='plus')cart[i].qty++;
+      else if(act.dataset.cartAction==='minus')cart[i].qty--;
+      if(act.dataset.cartAction==='remove'||cart[i].qty<=0)cart.splice(i,1);
+      saveCart();
+    }
+  });
+  document.getElementById('openCart')?.addEventListener('click',openCart);
+  document.getElementById('closeCart')?.addEventListener('click',closeCart);
+  cartOverlay?.addEventListener('click',e=>{if(e.target===cartOverlay)closeCart();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCart();});
+  checkoutForm?.addEventListener('submit',function(e){
+    e.preventDefault(); if(!cart.length){alert('Keranjang masih kosong.');return;}
+    const fd=new FormData(checkoutForm);
+    const methods={transfer_bca:'Transfer Bank BCA',transfer_mandiri:'Transfer Bank Mandiri',transfer_bni:'Transfer Bank BNI',qris:'QRIS',gopay:'GoPay',ovo:'OVO',dana:'DANA',shopeepay:'ShopeePay',cod:'COD (Bayar di Tempat)'};
+    const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+    const items=cart.map(i=>`• ${i.name} × ${i.qty} — ${rupiah(i.price*i.qty)}`).join('\n');
+    const msg=`Halo BoutiqueNi, saya ingin memesan:\n\n${items}\n\nTotal produk: ${rupiah(total)}\nNama: ${fd.get('customerName')}\nNo. HP: ${fd.get('customerPhone')}\nAlamat: ${fd.get('customerAddress')}\nMetode pembayaran: ${methods[fd.get('paymentMethod')]}\nCatatan: ${fd.get('customerNote')||'-'}\n\nMohon konfirmasi ongkir, total akhir, dan instruksi pembayaran.`;
+    window.open('https://wa.me/'+CART_WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank','noopener');
+  });
+  renderCart();
 
   // ---------- Init ----------
   loadPublicProducts();
