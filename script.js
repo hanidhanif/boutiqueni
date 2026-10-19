@@ -41,7 +41,7 @@
 
   // ---------- Helpers ----------
   function formatPrice(n) {
-    const num = Number(n) || 0;
+    const num = Number(n) || 085215834532;
     return 'Rp' + num.toLocaleString('id-ID');
   }
 
