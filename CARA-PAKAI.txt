@@ -1,0 +1,33 @@
+CARA MEMPERBAIKI THUMBNAIL WHATSAPP BOUTIQUENI
+==============================================
+
+MASALAH:
+index.html sebelumnya memakai gambar kecil (504x430).
+WhatsApp sering TIDAK menampilkan thumbnail jika gambar terlalu kecil.
+
+SOLUSI (lakukan SEMUA langkah ini):
+
+1. Upload file "og-share.jpg" ke ROOT repo GitHub kamu
+   (sejajar dengan index.html, BUKAN di dalam folder assets)
+   Path yang benar: boutiqueni/og-share.jpg
+   URL yang akan jadi: https://hanidhanif.github.io/boutiqueni/og-share.jpg
+
+2. Ganti file index.html di root repo dengan index.html dari zip ini
+   (yang sudah mengarah ke og-share.jpg ukuran 1200x630)
+
+3. Commit + Push ke branch main
+
+4. Tunggu 1-2 menit, lalu buka Facebook Debugger:
+   https://developers.facebook.com/tools/debug/
+   Paste: https://hanidhanif.github.io/boutiqueni/
+   Klik "Scrape Again" 2-3 kali sampai gambar muncul
+
+5. Di WhatsApp, kirim link BARU (bukan link lama):
+   https://hanidhanif.github.io/boutiqueni/?v=10
+
+   Atau kirim ke chat yang belum pernah dikirimi link ini.
+
+Spesifikasi gambar og-share.jpg:
+- 1200 x 630 px (ukuran ideal)
+- JPEG non-progressive
+- ~88 KB (aman untuk WhatsApp)
