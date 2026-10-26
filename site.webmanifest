@@ -1,0 +1,25 @@
+{
+  "name": "BoutiqueNi — Busana Muslimah Elegan",
+  "short_name": "BoutiqueNi",
+  "description": "Koleksi busana muslimah elegan, nyaman, dan berkualitas untuk wanita modern.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffaf5",
+  "theme_color": "#641522",
+  "lang": "id",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

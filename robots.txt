@@ -1,0 +1,10 @@
+# BoutiqueNi — https://hanidhanif.github.io/boutiqueni/
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hanidhanif.github.io/boutiqueni/sitemap.xml
+
+# Disallow common junk if any (none currently)
+# User-agent: *
+# Disallow: /private/
