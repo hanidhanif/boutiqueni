@@ -1,0 +1,9 @@
+# BoutiqueNi — https://hanidhanif.github.io/boutiqueni/
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hanidhanif.github.io/boutiqueni/sitemap.xml
+
+# Crawl-delay (opsional, kebanyakan bot mengabaikan)
+# Crawl-delay: 1
